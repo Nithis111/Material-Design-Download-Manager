@@ -1,17 +1,17 @@
 
-chrome.runtime.onMessage.addListener(function (message) {
-	console.log('msg received:'+message);
-	showStartAnim(message);
-});
-
+//chrome.runtime.onMessage.addListener(function (message) {
+//	console.log('msg received:'+message);
+//	showStartAnim(message);
+//});
+/*
 function showStartAnim(msg){
 	var src;
 	var shadow;
 	if(msg=='safe'){
-		src=chrome.runtime.getURL('icons/startd.png');
+		//src=chrome.runtime.getURL('icons/startd.png');
 		shadow='box-shadow:10px 10px 50px 20px rgb(147, 253, 147);';
 	} else if (msg=='danger'){
-		src=chrome.runtime.getURL('icons/startdr.png');
+		//src=chrome.runtime.getURL('icons/startdr.png');
 	} else {
 		return;
 	}

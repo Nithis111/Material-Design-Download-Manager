@@ -15,33 +15,33 @@ function loadI18nMessages() {
     document.querySelector(selector)[prop] = chrome.i18n.getMessage(msg);
   }
 
-  setProperty('title', 'innerText', 'tabTitle');
+  //setProperty('title', 'innerText', 'tabTitle');
   setProperty('#q', 'placeholder', 'searchPlaceholder');
-  setProperty('#all-downloads', 'title', 'AllDownloadsTitle');
-  setProperty('#translation', 'title', 'translationTitle');
-  setProperty('#options-open', 'title', 'optionsTitle');
-  setProperty('#clear-all', 'title', 'clearAllTitle');
-  setProperty('#clear-all-text', 'innerText', 'clearAllText');
-  setProperty('#clear-completed', 'title', 'clearCompletedTitle');
-  setProperty('#clear-completed-text', 'innerText', 'clearCompletedText');
-  setProperty('#clear-failed', 'title', 'clearFailedTitle');
-  setProperty('#clear-failed-text', 'innerText', 'clearFailedText');
-  setProperty('#clear-deleted', 'title', 'clearDeletedTitle');
-  setProperty('#clear-deleted-text', 'innerText', 'clearDeletedText');
-  setProperty('#open-folder', 'title', 'openDownloadsFolderTitle');
-  setProperty('#open-folder-text', 'innerText', 'openDownloadsFolderText');
-  setProperty('#help', 'title', 'settingsTitle');
-  setProperty('#help-text', 'innerText', 'settingsText');
+  //setProperty('#all-downloads', 'title', 'AllDownloadsTitle');
+  //setProperty('#translation', 'title', 'translationTitle');
+  //setProperty('#options-open', 'title', 'optionsTitle');
+  //setProperty('#clear-all', 'title', 'clearAllTitle');
+  //setProperty('#clear-all-text', 'innerText', 'clearAllText');
+  //setProperty('#clear-completed', 'title', 'clearCompletedTitle');
+  //setProperty('#clear-completed-text', 'innerText', 'clearCompletedText');
+  //setProperty('#clear-failed', 'title', 'clearFailedTitle');
+  //setProperty('#clear-failed-text', 'innerText', 'clearFailedText');
+  //setProperty('#clear-deleted', 'title', 'clearDeletedTitle');
+  //setProperty('#clear-deleted-text', 'innerText', 'clearDeletedText');
+  //setProperty('#open-folder', 'title', 'openDownloadsFolderTitle');
+  //setProperty('#open-folder-text', 'innerText', 'openDownloadsFolderText');
+  //setProperty('#help', 'title', 'settingsTitle');
+  //setProperty('#help-text', 'innerText', 'settingsText');
   
-  setProperty('#empty', 'innerText', 'zeroItems');
-  setProperty('#searching', 'innerText', 'searching');
-  setProperty('#search-zero', 'innerText', 'zeroSearchResults');
-  setProperty('#management-permission-info', 'innerText',
-              'managementPermissionInfo');
-  setProperty('#grant-management-permission', 'innerText',
-              'grantManagementPermission');
-  setProperty('#older', 'innerText', 'showOlderDownloads');
-  setProperty('#loading-older', 'innerText', 'loadingOlderDownloads');
+  //setProperty('#empty', 'innerText', 'zeroItems');
+  //setProperty('#searching', 'innerText', 'searching');
+  //setProperty('#search-zero', 'innerText', 'zeroSearchResults');
+  //setProperty('#management-permission-info', 'innerText',
+            //  'managementPermissionInfo');
+  //setProperty('#grant-management-permission', 'innerText',
+              //'grantManagementPermission');
+  //setProperty('#older', 'innerText', 'showOlderDownloads');
+  //setProperty('#loading-older', 'innerText', 'loadingOlderDownloads');
   setProperty('.pause', 'title', 'pauseTitle');
   setProperty('.resume', 'title', 'resumeTitle');
   setProperty('.cancel', 'title', 'cancelTitle');
@@ -240,12 +240,12 @@ function DownloadItem(data) {
   };
   item.div.onmouseover = function(){
   var openable = (item.state != 'interrupted') && item.exists && !item.deleted;
-  if(openable){
-	item.div.style.borderLeftColor='#5bc0de';
-	}
-	else {
-			item.div.style.borderLeftColor='#d9534f';
-	}
+  //if(openable){
+	item.div.style.borderLeftColor='#4285F4';
+	//}
+	//else {
+		//	item.div.style.borderLeftColor='#d9534f';
+	//}
 	if(item.state == 'in_progress' || item.state == 'interrupted' || !item.exists || item.deleted) item.getElement('info').style.display = 'none';
 	else item.getElement('info').style.display = 'inline';
 	return false;
@@ -864,28 +864,28 @@ if (chrome.downloads) {
       DownloadManager.clearAll();
       return false;
     };
-    document.getElementById('clear-deleted').onclick = function() {
-      DownloadManager.clearDeleted();
-      return false;
-    };
-    document.getElementById('clear-completed').onclick = function() {
-      DownloadManager.clearCompleted();
-      return false;
-    };
-    document.getElementById('clear-failed').onclick = function() {
-      DownloadManager.clearFailed();
-      return false;
-    };
-    if (chrome.downloads.showDefaultFolder) {
-      document.getElementById('open-folder').onclick = function() {
-        chrome.downloads.showDefaultFolder();
-        return false;
-      };
-    } else {
-      document.getElementById('open-folder').hidden = true;
-    }
+    //document.getElementById('clear-deleted').onclick = function() {
+    //  DownloadManager.clearDeleted();
+    //  return false;
+    //};
+    //document.getElementById('clear-completed').onclick = function() {
+    //  DownloadManager.clearCompleted();
+    //  return false;
+    //};
+    //document.getElementById('clear-failed').onclick = function() {
+    //  DownloadManager.clearFailed();
+    //  return false;
+    //};
+    //if (chrome.downloads.showDefaultFolder) {
+    //  document.getElementById('open-folder').onclick = function() {
+    //    chrome.downloads.showDefaultFolder();
+    //    return false;
+    //  };
+    //} else {
+    //  document.getElementById('open-folder').hidden = true;
+    //}
 	DownloadManager.startPollingProgress();
-
+/*
 	$(function(){
     $('#items').contextMenu({
         selector: '.item',
@@ -945,7 +945,7 @@ if (chrome.downloads) {
 		}	
         }
     });
-});
+});*/
     
 setup();
   };
@@ -1060,21 +1060,14 @@ function openSelectedItem(item){
 }
 
 function setup(){
-	document.getElementById('options-open').onclick=function(){
-		var options = document.getElementById('options-pane');
-		if(options.style.visibility === 'visible') {
-			options.style.visibility = 'hidden';
-		} else {
-			options.style.visibility = 'visible';
-		}
-	}
+	
   document.getElementById('all-downloads').onclick=function(){
-    chrome.tabs.create({url: "chrome://downloads"});
+    chrome.tabs.create({url: "chrome://downloads/"});
     event.stopPropagation();
     return false;
   }
-	document.getElementById('options-pane').onclick = function(){
-		this.style.visibility = 'hidden';
-	}
+	//document.getElementById('options-pane').onclick = function(){
+	//	this.style.visibility = 'hidden';
+	//}
 	
 }

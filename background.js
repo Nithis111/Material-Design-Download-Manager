@@ -1,31 +1,11 @@
 // analytics code
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = 'https://ssl.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-43466793-3']);
-var analyticsTimeInterval=1000*60*60*24;
-
-function trackView(){
-	var now = new Date().getTime();
-	if(!localStorage.lastAnalyticTrackingTime || now-localStorage.lastAnalyticTrackingTime >= analyticsTimeInterval){
-		_gaq.push(['_trackPageview']);
-		localStorage.lastAnalyticTrackingTime=now;
-		console.log('Page view tracking pixel sent');
-	}
-	var timeLeft = analyticsTimeInterval-(now-localStorage.lastAnalyticTrackingTime);
-	setTimeout(trackView, timeLeft>0?timeLeft:1000);
-}
-trackView();
 
 
-if(localStorage.allowGreybar === "true")
+
+//if(localStorage.allowGreybar === "false")
   chrome.downloads.setShelfEnabled(true);
-else
-  chrome.downloads.setShelfEnabled(false);
+//else
+//  chrome.downloads.setShelfEnabled(false);
 
 var maxTimeLeftInMs=0;
 
@@ -56,24 +36,24 @@ function setTimeLeft(ms){
 }
 
 var lightColors = {
-  progressColor: '#0d0',
+  progressColor: '#4BAE4F',
   arrow: '#333',
   danger: 'red',
-  complete: '#8FED24',
+  complete: '#4BAE4F',
   paused: 'grey',
   background: 'white',
-  progressBar: '#ddd',
+  progressBar: '#bbb',
   timeLeft: '#fff',	
 }
 
 var darkColors = {
-  progressColor: '#0d0',
+  progressColor: '#4BAE4F',
   arrow: '#333',
   danger: 'red',
-  complete: '#8FED24',
+  complete: '#4BAE4F',
   paused: 'grey',
   background: 'white',
-  progressBar: '#ddd',
+  progressBar: '#bbb',
   timeLeft: '#444',
 }
 
@@ -231,7 +211,7 @@ function maybeOpen(id) {
     localStorage.openWhenComplete = JSON.stringify(openWhenComplete);
   }
 }
-
+/*
 function setBrowserActionIcon(stage, badge) {
 	
   var canvas1 = drawIcon(19, stage, badge);
@@ -244,7 +224,7 @@ function setBrowserActionIcon(stage, badge) {
   chrome.browserAction.setIcon({imageData:imageData});
   canvas1.parentNode.removeChild(canvas1);
   canvas2.parentNode.removeChild(canvas2);
-}
+}*/
 
 function pollProgress() {
 	
@@ -282,7 +262,7 @@ function pollProgress() {
         var showNoti = true;
         if(localStorage.notiications === "false")
             showNoti=false;
-		if(recentlyCompleted && showNoti) showNotification(item);
+		//if(recentlyCompleted && showNoti) showNotification(item);
         anyRecentlyCompleted = anyRecentlyCompleted || recentlyCompleted;
         maybeOpen(item.id);
       }
@@ -354,14 +334,14 @@ function showNotification(item){
       item.id,
       {'size':32},
       function(icon_url) {
-	   var icon="icon19.png"
+	   var icon="icon19a.png"
 	  if(icon_url!==undefined) icon= icon_url;
 		var opt = {
 			type: "basic",
 			title: item.basename,
 			message: "Download Complete!",
 			eventTime : Date.now() + 5000,
-			iconUrl: "icon128.png"
+			iconUrl: "icon128a.png"
 		}
 
 	chrome.notifications.create(""+item.id, opt, function(id){setTimeout(function(){
@@ -393,7 +373,7 @@ function sendAnimMsg(msg) {
 		})
 	})
 }
-
+/*
 chrome.notifications.onClicked.addListener(function(itemId){
 	if(localStorage.notificationAction == "open-folder"){
 		chrome.downloads.show(parseInt(itemId));			
@@ -408,7 +388,7 @@ chrome.notifications.onClosed.addListener(function(notificationId,byUser){
 	//chrome.notifications.clear(notificationId, function(wasCleared){} );
 	localStorage.popupLastOpened = Date.now();
 });
-
+/*
 chrome.runtime.onMessage.addListener(function(request,sender,sendResponse) {
   if(request=='theme'){
 	setColors();
@@ -419,7 +399,7 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse) {
     [16, 19, 38, 128].forEach(function(s) {
       var canvas = drawIcon(s, 'n', '');
       chrome.downloads.download({
-        url: canvas.toDataURL('image/png', 1.0),
+        //url: canvas.toDataURL('image/png', 1.0),
         filename: 'icon' + s + '.png',
       });
       canvas.parentNode.removeChild(canvas);
@@ -436,4 +416,4 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse) {
   		}
   } catch(e){}
 
-});
+});*/
