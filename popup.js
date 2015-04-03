@@ -575,7 +575,7 @@ DownloadItem.prototype.maybeAccept.accepting_danger = false;
 
 var DownloadManager = {};
 
-DownloadManager.showingOlder = false;
+DownloadManager.showingOlder = true;
 
 DownloadManager.getItem = function(id) {
   var item_div = document.getElementById('item' + id);
@@ -759,7 +759,7 @@ DownloadManager.clearUndefined = function() {
 };
 
 
-var kShowNewMax = 50;
+var kShowNewMax = 100;
 var kOldMs = 1000 * 60 * 60 * 24 * 7;
 
 // These settings can be tuned by modifying localStorage in dev-tools.
@@ -885,7 +885,7 @@ if (chrome.downloads) {
     //  document.getElementById('open-folder').hidden = true;
     //}
 	DownloadManager.startPollingProgress();
-/*
+
 	$(function(){
     $('#items').contextMenu({
         selector: '.item',
@@ -900,7 +900,7 @@ if (chrome.downloads) {
         },
         items: {
             
-            "open": {name: chrome.i18n.getMessage("contextMenuOpen"), callback: function(key, options) {
+          /*  "open": {name: chrome.i18n.getMessage("contextMenuOpen"), callback: function(key, options) {
 							DownloadManager.getItem($(this)[0].id.substr(4)).open();
               window.close();
 							},
@@ -908,7 +908,7 @@ if (chrome.downloads) {
 							var item = DownloadManager.getItem($(this)[0].id.substr(4));
 							return !((item.state != 'interrupted') && item.exists && !item.deleted);
 							}
-		},
+		},*/
             "folder": {name: chrome.i18n.getMessage("contextMenuOpenFolder"), callback: function(key, options) {
 							DownloadManager.getItem($(this)[0].id.substr(4)).show();
               window.close();
@@ -918,15 +918,16 @@ if (chrome.downloads) {
 							return !((item.state != 'interrupted') && item.exists && !item.deleted);
 							}		
 		},
-	    "sep1": "---------",
+	    
             
             "retry": {name: chrome.i18n.getMessage("contextMenuGoToDownloadPage"), callback: function(key, options) {
 							chrome.tabs.create({url: DownloadManager.getItem($(this)[0].id.substr(4)).url});
 							}},
+           /*   
             "copy": {name: chrome.i18n.getMessage("contextMenuDownloadLink"), callback: function(key, options) {
 							copyTextToClipboard(DownloadManager.getItem($(this)[0].id.substr(4)).url);}},
-	"sep2": "---------",
-	"delete": {name: chrome.i18n.getMessage("contextMenuDeleteFromDisk"), callback: function(key, options) {
+	"sep2": "---------",*/
+	/*"delete": {name: chrome.i18n.getMessage("contextMenuDeleteFromDisk"), callback: function(key, options) {
 							DownloadManager.getItem($(this)[0].id.substr(4)).removeFile();
 							DownloadManager.getItem($(this)[0].id.substr(4)).erase();
 							},
@@ -934,18 +935,18 @@ if (chrome.downloads) {
 							var item = DownloadManager.getItem($(this)[0].id.substr(4));
 							return !((item.state != 'interrupted') && item.exists && !item.deleted);
 							}		
-		},
-	"erase": {name: chrome.i18n.getMessage("contextMenuRemoveFromList"), callback: function(key, options) {
+		},*/
+	/*"erase": {name: chrome.i18n.getMessage("contextMenuRemoveFromList"), callback: function(key, options) {
 							DownloadManager.getItem($(this)[0].id.substr(4)).erase();
 							},
 					disabled: function(key, options){
 							var item = DownloadManager.getItem($(this)[0].id.substr(4));
 							return (item.state == 'in_progress');
 							}		
-		}	
+		}	*/
         }
     });
-});*/
+});
     
 setup();
   };
