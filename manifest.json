@@ -9,8 +9,8 @@
    //}],
    "browser_action": {
       "default_icon": {
-         "19": "icon19.png",
-         "38": "icon38.png"
+         "128": "icon.png"
+       
       },
       "default_popup": "popup.html",
       "default_title": "__MSG_extName__"
@@ -18,7 +18,7 @@
    "default_locale": "en",
    "description": "__MSG_extDesc__",
    "icons": {
-      "128": "icon128.png"
+      "128": "icon.png"
    },
    //"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
    "offline_enabled": true,
