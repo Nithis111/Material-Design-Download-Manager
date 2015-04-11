@@ -684,6 +684,7 @@ DownloadManager.onSearch = function() {
   if (!query) {
     DownloadManager.showNew();
     document.getElementById('search-zero').hidden = true;
+
   } else {
     query = query.map(function(term) {
       // strip quotes
@@ -692,18 +693,37 @@ DownloadManager.onSearch = function() {
               term[term.length - 1] == term[0]) ?
         term.substr(1, term.length - 2) : term;
     });
+
     var searching = document.getElementById('searching');
     searching.hidden = false;
+
     chrome.downloads.search({query: query}, function(results) {
       document.getElementById('older').hidden = true;
       DownloadManager.forEachItem(function(item) {
         item.div.hidden = true;
+
+        
       });
       results.forEach(function(result) {
         DownloadManager.getOrCreate(result).div.hidden = false;
+
+        
       });
+    
+      
+      
+      
+
       searching.hidden = true;
       document.getElementById('search-zero').hidden = (results.length != 0);
+      if (results.length != 0) {
+          console.log('yes');
+          document.getElementById('empty-state').style.display = 'none';
+        }
+      else {
+          document.getElementById('empty-state').style.display = 'block';
+      }
+
     });
   }
 };

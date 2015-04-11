@@ -54,6 +54,13 @@ body {
     background-color: #fff;
 }
 
+#empty-state {
+  display: none;
+  text-align: center;
+  margin-top: 80px;
+}
+}
+
 .older {
 line-height:41px;
 cursor:pointer;
