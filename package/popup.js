@@ -629,7 +629,8 @@ DownloadManager.showNew = function() {
   document.getElementById('older').hidden = !any_items;  
   //document.getElementById('head').style.borderBottomWidth =
    // (any_items ? 1 : 0) + 'px';
-  document.getElementById('clear-all').hidden = !any_items;
+  //document.getElementById('clear-all').hidden = !any_items;
+
 
   var query_search = document.getElementById('q');
   query_search.hidden = !any_items;
@@ -884,6 +885,25 @@ if (chrome.downloads) {
       DownloadManager.clearAll();
       return false;
     };
+
+
+
+    $('#all-downloads img').hover(function(){
+        $('.tooltip1').show();
+    }, function(){
+        $('.tooltip1').hide(); 
+    });
+    
+
+    $('#clear-all img').hover(function(){
+        $('.tooltip2').show();
+    }, function(){
+        $('.tooltip2').hide(); 
+    });
+
+    
+
+   
     //document.getElementById('clear-deleted').onclick = function() {
     //  DownloadManager.clearDeleted();
     //  return false;
@@ -986,7 +1006,7 @@ setup();
     document.getElementById('empty').style.display = 'none';
     document.getElementById('q').style.display = 'none';
     document.getElementById('open-folder').style.display = 'none';
-    document.getElementById('clear-all').style.display = 'none';
+    //document.getElementById('clear-all').style.display = 'none';
 	setup();
   };
 }

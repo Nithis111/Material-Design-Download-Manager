@@ -3,7 +3,7 @@
    "default_locale": "en",
    "name": "Material Design Download Manager",
    "description": "A Material Design of Chrome Download Manager.",
-   "version": "1.6",
+   "version": "1.7",
    "background": {
       "persistent": true,
       "scripts": [ "background.js" ]
